@@ -79,6 +79,7 @@ function OnStart()
     app.SetOrientation("Portrait");
     distanceWarning=false;
     previous_location=null;
+    setInterval(refreshScreen,1000)
 }
 
 function OnPause() {
@@ -210,7 +211,7 @@ function btnDlgCancel_OnTouch() {quitdlg.Dismiss();app.SetAlarm("Set",1234, OnAl
 function btnODODlgCancel_OnTouch() {dlgResetODO.Dismiss();}
   
 function refreshScreen() {
-    
+    time_curr = new Date().getTime();
     txt_dist.SetText(" ODO: "+(dist_travelled/1000).toFixed(2)+" km" );
     txt_time.SetText("Chrono: " + (timeToString(time_curr - time_start)));
     
