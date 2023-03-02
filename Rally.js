@@ -36,7 +36,6 @@ function DrawUserInterface() {
         ip="192.168.43.1";}
     txt_webserver.SetText(ip+":8080");
     refreshScreen();
-    app.SetAlarm( "Set", 1234, OnAlarm, time_start + 1000,1000 );
 }
 
 //Called when application is started.
@@ -228,7 +227,7 @@ function refreshScreen() {
     txt_target_speed.SetText((target_speed).toFixed(0)+" km/h");
     
     // txt_speed.SetText((previous_location.speed*3.6).toFixed(0) + " km/h");
-  txt_speed.SetText(getCurrentSpeed().toFixed(0) + " km/h");
+    txt_speed.SetText(getCurrentSpeed().toFixed(0) + " km/h");
  
 
     if (previous_location!=null) {
@@ -246,7 +245,7 @@ function refreshScreen() {
             txt_lastGPS.SetTextColor( "Red" );
         }
     }
-
+    app.SetAlarm( "Set", 1234, OnAlarm, new Date().getTime() + 1000,1000 );
 }
 
 function getTimeIncrement(btn) {
