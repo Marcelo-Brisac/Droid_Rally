@@ -41,6 +41,7 @@ function DrawUserInterface() {
 //Called when application is started.
 function OnStart()
 {   
+    time_curr = new Date().getTime();
     app.LoadScript("UserInterface.js", DrawUserInterface);
     
     if (!app.FolderExists("/sdcard/mwbrally")) {
@@ -88,7 +89,7 @@ function OnPause() {
 function OnResume() {
     curr_time = new Date().getTime();
     loc.Start();
-  	app.SetAlarm( "Set", 1234, OnAlarm, curr_time + 1000,1000 );
+    app.SetAlarm( "Set", 1234, OnAlarm, curr_time + 1000,1000 );
 }
 
 function OnServlet(request, info) {
@@ -170,9 +171,10 @@ function loc_OnChange( data )
 function OnAlarm( id ) {
 
   if ((id==1234)){
+     time_curr = new Date().getTime();
      refreshScreen();
-    // app.SetAlarm("Cancel",1234);
-    // app.SetAlarm("Set",1234, OnAlarm, time_curr+1000);
+     app.SetAlarm("Cancel",1234);
+     app.SetAlarm("Set",1234, OnAlarm, time_curr+1000);
   }
 }
 
@@ -208,7 +210,6 @@ function btnDlgCancel_OnTouch() {quitdlg.Dismiss();app.SetAlarm("Set",1234, OnAl
 function btnODODlgCancel_OnTouch() {dlgResetODO.Dismiss();}
   
 function refreshScreen() {
-    time_curr = new Date().getTime();
     
     txt_dist.SetText(" ODO: "+(dist_travelled/1000).toFixed(2)+" km" );
     txt_time.SetText("Chrono: " + (timeToString(time_curr - time_start)));
@@ -245,7 +246,6 @@ function refreshScreen() {
             txt_lastGPS.SetTextColor( "Red" );
         }
     }
-    app.SetAlarm( "Set", 1234, OnAlarm, new Date().getTime() + 1000,1000 );
 }
 
 function getTimeIncrement(btn) {
