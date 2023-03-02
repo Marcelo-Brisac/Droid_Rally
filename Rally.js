@@ -83,14 +83,14 @@ function OnStart()
 }
 
 function OnPause() {
-   app.SetAlarm("Cancel",1234);
+   //app.SetAlarm("Cancel",1234);
   //app.Exit();
 }
 
 function OnResume() {
     curr_time = new Date().getTime();
     loc.Start();
-    app.SetAlarm( "Set", 1234, OnAlarm, curr_time + 1000,1000 );
+    //app.SetAlarm( "Set", 1234, OnAlarm, curr_time + 1000,1000 );
 }
 
 function OnServlet(request, info) {
@@ -169,22 +169,22 @@ function loc_OnChange( data )
     }
 }
 
-function OnAlarm( id ) {
+//function OnAlarm( id ) {
 
-  if ((id==1234)){
-     time_curr = new Date().getTime();
-     refreshScreen();
-     app.SetAlarm("Cancel",1234);
-     app.SetAlarm("Set",1234, OnAlarm, time_curr+1000);
-  }
-}
+//  if ((id==1234)){
+//     time_curr = new Date().getTime();
+//     refreshScreen();
+     //app.SetAlarm("Cancel",1234);
+     //app.SetAlarm("Set",1234, OnAlarm, time_curr+1000);
+  //}
+//}
 
 function OnBack() {
 }
 
 function quit()
 {
-  app.SetAlarm("Cancel",1234);
+  //app.SetAlarm("Cancel",1234);
   quitdlg.Show();
 }
 
@@ -207,7 +207,7 @@ function btn_odo_reset_OnTouch() {
     dlgResetODO.Show();
 }
 
-function btnDlgCancel_OnTouch() {quitdlg.Dismiss();app.SetAlarm("Set",1234, OnAlarm, new Date().getTime()+1000,1000);}
+function btnDlgCancel_OnTouch() {quitdlg.Dismiss();}//app.SetAlarm("Set",1234, OnAlarm, new Date().getTime()+1000,1000);}
 function btnODODlgCancel_OnTouch() {dlgResetODO.Dismiss();}
   
 function refreshScreen() {
